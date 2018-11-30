@@ -18,3 +18,8 @@ chef_version '>= 13.0'
 # a Supermarket.
 #
 # source_url 'https://github.com/<insert_org_here>/scalr_base_webhook'
+
+depends 'chef-sugar'
+depends 'docker', '~> 4.6.8'
+depends 'poise-python', '~> 1.7.0'
+depends 'selinux', '~> 2.1.1'

@@ -1,0 +1,17 @@
+FROM debian:jessie-slim
+MAINTAINER Scalr <@scalr.com>
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends python python-dev python-pip uwsgi uwsgi-plugin-python && \
+    groupadd uwsgi && \
+    useradd -g uwsgi uwsgi
+
+COPY ./requirements.txt /opt/<%= @webhookname %>/
+
+RUN pip install -r /opt/<%= @webhookname %>/requirements.txt
+
+COPY . /opt/<%= @webhookname %>
+
+EXPOSE 5018
+
+CMD ["/usr/bin/uwsgi", "--ini", "/opt/<%= @webhookname %>/uwsgi.ini", "--logto2", "/var/log/webhook/<%= @webhookname %>.log"]

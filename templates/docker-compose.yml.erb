@@ -1,0 +1,9 @@
+version: '3'
+services:
+  <%= @webhookname %>:
+    build: .
+    container_name: <%= @webhookname %>
+    ports:
+      - "<%= @webhookport %>:<%= @webhookport %>"
+    volumes:
+      - /var/log/webhook:/var/log/webhook
